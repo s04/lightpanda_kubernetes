@@ -31,19 +31,6 @@ make build-arm64
 make push-arm64
 ```
 
-### Manual Build
-
-If you're building multiarch on Silicon M1 then create a multiarch builder first:
-
-```
-docker buildx create --use 
-```
-```
-git clone https://www.github.com/lightpanda-io/browser
-cd browser
-docker buildx build --platform linux/arm64 . -t $USERNAME/$IMAGENAME --push
-```
-
 ### For testing the Github Actions
 
 For testing the x86_64 workflow:

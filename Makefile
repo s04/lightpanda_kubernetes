@@ -68,4 +68,4 @@ manifest:
 
 run-arm64-local: build-arm64
 	@echo "Running ARM64 Lightpanda container locally..."
-	docker run --rm -it -p 9222:9222 --name lightpanda-local $(DOCKER_REPO):$(NIGHTLY_TAG)-arm64 
+	docker run --rm -it -p 9224:9222 --name lightpanda-local $(DOCKER_REPO):$(NIGHTLY_TAG)-arm64 
