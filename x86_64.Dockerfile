@@ -9,4 +9,4 @@ RUN curl -L -o /bin/lightpanda https://github.com/lightpanda-io/browser/releases
 
 EXPOSE 9222/tcp
 
-CMD ["/bin/lightpanda", "serve", "--host", "0.0.0.0", "--port", "9222"] 
+CMD ["/bin/lightpanda", "serve", "--host", "0.0.0.0", "--port", "9222"]

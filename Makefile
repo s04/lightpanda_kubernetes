@@ -7,7 +7,7 @@ COMMIT_HASH := $(shell git rev-parse --short HEAD)
 
 .PHONY: build-x86_64 build-arm64 build-all \
         push-x86_64 push-arm64 push-all \
-        manifest help
+        manifest run-arm64-local help
 
 help:
 	@echo "Available targets:"
@@ -18,6 +18,7 @@ help:
 	@echo "  push-arm64    - Push ARM64 Docker image"
 	@echo "  push-all      - Push both architecture images"
 	@echo "  manifest      - Create and push multi-arch manifest"
+	@echo "  run-arm64-local - Run ARM64 image locally for testing"
 	@echo "  help          - Show this help message"
 
 # For local builds, we use --load to make the image available locally
@@ -63,4 +64,8 @@ manifest:
 	docker manifest create $(DOCKER_REPO):$(COMMIT_HASH) \
 		$(DOCKER_REPO):$(COMMIT_HASH)-amd64 \
 		$(DOCKER_REPO):$(COMMIT_HASH)-arm64
-	docker manifest push $(DOCKER_REPO):$(COMMIT_HASH) 
+	docker manifest push $(DOCKER_REPO):$(COMMIT_HASH)
+
+run-arm64-local: build-arm64
+	@echo "Running ARM64 Lightpanda container locally..."
+	docker run --rm -it -p 9222:9222 --name lightpanda-local $(DOCKER_REPO):$(NIGHTLY_TAG)-arm64 
